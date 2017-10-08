@@ -1,0 +1,50 @@
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around start"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="40">
+    <div fxFlex *ngIf="dish">
+    <md-card>
+      <md-card-header>
+        <md-card-title>
+          <h3>{{dish.name | uppercase}}</h3>
+        </md-card-title>
+      </md-card-header>
+      <img md-card-image src={{dish.image}} alt={{dish.name}}>
+      <md-card-content>
+        <p>{{dish.description}}
+        </p>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button (click)="goBack()">BACK</button>
+        <button md-button>LIKE</button>
+        <button md-button>SHARE</button>
+       </md-card-actions>
+           
+    </md-card>
+  </div>
+</div>
+
+  <div fxFlex="40">
+    <div fxFlex *ngIf="dish">
+    <h3>Comments</h3>
+      <md-list>
+       <md-list-item *ngFor="let comment of dish.comments">
+        <h4 md-line>{{comment.comment}}</h4>
+        <p md-line> {{comment.rating }} stars </p>
+        <p md-line> -- {{comment.author }} {{comment.date | date}} </p>
+        
+       </md-list-item>
+        <md-divider></md-divider>
+       
+      </md-list>    
+   
+  </div>
+  </div>
+
+</div>
+<!-- The Angular material card component should be used to display the details of the dish as shown above. Please remember to use the Angular "uppercase" pipe on the name displayed in the card title. Also apply the *ngIf="dish" structural directive to both the <md-card> that displays the details of the dish. -->
