@@ -5,6 +5,9 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
+
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 
 import { AppComponent } from './app.component';
 import 'hammerjs';
@@ -16,6 +19,12 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { baseURL } from './shared/baseurl';
+
 
 @NgModule({
   declarations: [
@@ -26,16 +35,25 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     FooterComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [DishService, PromotionService],
+  entryComponents: [
+        LoginComponent
+  ],
+  providers: [DishService, PromotionService, LeaderService,
+    {provide: 'BaseURL', useValue: baseURL},
+    ProcessHTTPMsgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
